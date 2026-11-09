@@ -83,6 +83,11 @@ meter{height:1.6rem}
 @keyframes pop{from{opacity:.1}to{opacity:1}}
 @media (prefers-reduced-motion:no-preference){.grid .big{animation:up .5s both;animation-delay:calc(var(--i,0)*80ms)}.big:hover{transform:translateY(-5px)}svg.body.pick .slot:not(.on) .shp{animation:blink .8s infinite alternate}svg .slot.on .shp{animation:pop .5s}main>*{animation:up .35s both}}
 @media (prefers-reduced-motion:no-preference){.r{transition:background .15s}}
+.license{max-width:48rem;margin:2rem auto 0;padding:1.2rem 1.2rem 2rem;text-align:center;font-family:inherit;font-size:.85em;line-height:1.9;color:var(--muted);border-top:2px solid var(--border)}
+.license p{margin:.3rem 0}
+.license a{color:var(--line);font-weight:700}
+.license .icons img{width:1.4em;height:1.4em;margin:0 .15em;vertical-align:middle}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .license .icons img{filter:invert(1)}}
 </style>
 </head>
 <body>
@@ -263,5 +268,19 @@ document.getElementById('smaller').onclick=function(){size=Math.max(1,size-.15);
 go('home');
 })();
 </script>
+<footer class="license">
+  <p class="r" tabindex="0">
+    <a href="https://example.com">وزارة التربية والتعليم</a> © 2026 بواسطة
+    <a href="https://haytham172-afk.github.io/curly-enigma/">هيثم</a>.
+    مرخّص بموجب
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ar">CC BY-NC-SA 4.0</a>
+  </p>
+  <p class="icons" aria-hidden="true">
+    <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="">
+    <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="">
+    <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="">
+    <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="">
+  </p>
+</footer>
 </body>
 </html>
