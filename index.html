@@ -88,6 +88,23 @@ meter{height:1.6rem}
 .license a{color:var(--line);font-weight:700}
 .license .icons img{width:1.4em;height:1.4em;margin:0 .15em;vertical-align:middle}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .license .icons img{filter:invert(1)}}
+/* الشاشة الرئيسية: بحجم الشاشة فقط دون شريط تمرير */
+body.home{height:calc(100vh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow:hidden;display:flex;flex-direction:column}
+body.home .bar{flex:none;padding:.35rem 1rem}
+body.home #status{font-size:.85rem;line-height:1.4}
+body.home main{flex:1 1 auto;min-height:0;overflow-y:auto;width:100%;max-width:64rem;margin:0 auto;padding:.4rem 1.2rem;display:flex;flex-direction:column;justify-content:space-evenly}
+body.home .hero{padding:.7rem 1.4rem;margin:.2rem 0}
+body.home .hero h1{font-size:clamp(1.3rem,4.2vh,1.9rem);margin:0 0 .2rem;line-height:1.4}
+body.home .hero .lead{margin:.2rem 0;line-height:1.6;font-size:clamp(.9rem,2.3vh,1.1rem)}
+body.home .prog{margin-top:.3rem;font-size:.9em;line-height:1.5}
+body.home .grid{grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem;margin:.3rem 0}
+body.home .big{min-height:0;padding:.5rem .4rem;gap:.1rem;font-size:clamp(.9rem,2.2vh,1.1rem);line-height:1.5}
+body.home .big .ico{width:clamp(2.2rem,6vh,3.2rem);height:clamp(2.2rem,6vh,3.2rem);font-size:clamp(1.2rem,3.6vh,1.8rem)}
+body.home .big small{font-size:.8em;line-height:1.5}
+body.home h2{margin:.2rem 0 0;font-size:1.1em;line-height:1.4}
+body.home .license{flex:none;width:100%;max-width:none;margin:0;padding:.3rem 1rem .5rem;font-size:.8em;line-height:1.6}
+body.home .license p{margin:0}
+body.home .license .icons img{width:1.2em;height:1.2em}
 </style>
 </head>
 <body>
@@ -231,13 +248,13 @@ function bindLab(){
 }
 
 function go(v){
-  stop();view=v;
+  stop();view=v;document.body.classList.toggle('home',v==='home');
   app.innerHTML=v==='home'?homeV():v==='gloss'?glossV():v==='final'?finalV():v==='lab'?labV():stationV(+v.slice(1));
   mkr(app);
   if(v[0]==='s'&&v.length===2){var k=+v[1];$('#act').innerHTML=A[k].h;A[k].b($('#act'));bindQuiz(v,S[k].q)}
   if(v==='final')bindQuiz('final',allQs());
   if(v==='lab')bindLab();
-  var h=$('h1');if(h){h.focus({preventScroll:true})}window.scrollTo(0,0);
+  var h=$('h1');if(h){h.focus({preventScroll:true})}window.scrollTo(0,0);app.scrollTop=0;
 }
 app.addEventListener('click',function(e){var b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
 document.getElementById('home').onclick=function(){go('home')};
